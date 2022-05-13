@@ -27,6 +27,7 @@ $products=$product->fetchAll();
                         <a href="" class="btn-delete btn btn-danger">Mass Delete</a>
                     </div>
                 </div>
+                <hr class="solid">
                 <!-- render products here by id -->
                 <div class="products-list" style="display:grid;grid-template-columns:repeat(4,1fr);">
                     <?php

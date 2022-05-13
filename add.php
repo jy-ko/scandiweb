@@ -1,29 +1,33 @@
 <?php 
  include_once ("product.php"); 
+ require_once("validator.php");
  $product= new Product(); 
 
- if(isset($_POST['submit'])) 
- { 
-    $data= array( 
-    
-        "sku"  => $product->escape_string($_POST['sku']),            
-                "name"  => $product->escape_string($_POST['name']), 
-                                        "price"  => $product>escape_string($_POST['product']) 
-    
-    );  
-    $product->insert($data,'form'); 
-    
-    if($data) 
-    { 
-    echo 'insert successfully'; 
-    header('location:index.php'); 
-    } 
-    
-else 
-    { 
-    echo 'try again' ; 
-    }  
-             
+ if(isset($_POST['submit'])) {
+    // $validation = new Validator($_POST);
+    // $errors = $validation->validateForm();
+     // set product property values
+    $product->sku = $_POST['sku'];
+    $product->name = $_POST['name'];
+    $product->price = $_POST['price'];
+    $product->type = $_POST['type'];
+    $product->insert($_POST);
+    // var_dump($product);
+        // $product->insert($data,'form'); 
+        if($product) { 
+        echo 'insert successfully'; 
+        header('location:index.php'); 
+        } 
+        // else { echo 'try again' ; } 
+    // if (!$errors) {
+    //     $product->insert($_POST);
+    //     // $product->insert($data,'form'); 
+    //     if($product) { 
+    //     echo 'insert successfully'; 
+    //     header('location:index.php'); 
+    //     } 
+    //     else { echo 'try again' ; }                  
+    // }
  }  
 ?>
 <!DOCTYPE html>
@@ -41,72 +45,86 @@ else
     <body>
         <main>
             <div class="container">
-                <div class="nav">
-                    <h1>Add Product</h1>
-                    <div class="nav-right">
-                        <a href="" class="btn-add btn btn-warning">Save</a>
-                        <a href="" class="btn-delete btn btn-secondary">Cancel</a>
-                    </div>
-                </div>
-                <form class="product-form">
-                    <!-- sku -->
-                    <div class="form-group row">
-                        <label for="sku" class="col-sm-2 col-form-label">SKU
-                        </label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sku" >
-                        </div>
-                    </div>
-                    <!-- name -->
-                    <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name">
-                        </div>
-                    </div>
-                    <!-- price -->
-                    <div class="form-group row">
-                        <label for="price" class="col-sm-2 col-form-label">Price($)</label>
-                        <div class="col-sm-10">
-                        <input type="number" class="form-control" id="price">
-                        </div>
-                    </div>
-                    <!-- switcher -->
-                    <div class="form-group row">
-                            <label for="productType" class="col-sm-2 col-form-label">Switcher</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" id="productType">
-                                    <option>select</option>
-                                    <option>dvd</option>
-                                    <option>book</option>
-                                    <option>furniture</option>
-                                </select>
-                            </div>
-                        
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group row" id="dvd">
-                            <label for="price" class="col-sm-2 col-form-label">dvd</label>
-                            <div class="col-sm-10">
-                            <input type="number" class="form-control" id="price">
-                            </div>
-                        </div>  
-                        <div class="form-group row" id="book">
-                            <label for="price" class="col-sm-2 col-form-label">book</label>
-                            <div class="col-sm-10">
-                            <input type="number" class="form-control" id="price">
-                            </div>
-                        </div>  
-                        <div class="form-group row" id="furniture">
-                            <label for="price" class="col-sm-2 col-form-label">furniture</label>
-                            <div class="col-sm-10">
-                            <input type="number" class="form-control" id="price">
-                            </div>
-                        </div>  
-                    </div>
 
-                    <!-- dvd form -->
-       
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <div class="nav">
+                        <h1>Add Product</h1>
+                        <div class="nav-right">
+                            <input type="submit" name="submit" value="Save" class="btn-add btn btn-warning"></input>
+                            <a href="/" class="btn-delete btn btn-secondary">Cancel</a>
+                        </div>
+                    </div>
+                    <hr class="solid">
+                    <!-- sku -->
+                    <div class="product-form">
+                        <div class="form-group row">
+                            <label for="sku" class="col-sm-2 col-form-label">SKU
+                            </label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="sku" name="sku">
+                            <div class="error">
+                                <?php echo $errors['sku'] ?? '' ?>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- name -->
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                        </div>
+                        <!-- price -->
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-2 col-form-label">Price($)</label>
+                            <div class="col-sm-10">
+                            <input type="number" class="form-control" id="price" name="price">
+                            </div>
+                        </div>
+                        <!-- switcher -->
+                        <div class="form-group row">
+                                <label for="productType" class="col-sm-2 col-form-label">Switcher</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="productType" name="type">
+                                        <option>select</option>
+                                        <option>dvd</option>
+                                        <option>book</option>
+                                        <option>furniture</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group row" id="dvd">
+                                <label for="DVD" class="col-sm-2 col-form-label">Size(MB)</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="size">
+                                </div>
+                                <small class="form-text text-muted">Please provide size in MB</small>
+                            </div>  
+                            <div class="form-group row" id="book">
+                                <label for="Book" class="col-sm-2 col-form-label">Weight(KG)</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="weight">
+                                </div>
+                                <small class="form-text text-muted">Please provide weight in KG</small>
+                            </div>  
+                            <div class="form-group row" id="furniture">
+                                <label for="furniture" class="col-sm-2 col-form-label">Height(CM)</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="height">
+                                </div>
+                                <label for="furniture" class="col-sm-2 col-form-label">Width(CM)</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="width">
+                                </div>
+                                <label for="furniture" class="col-sm-2 col-form-label">Length(CM)</label>
+                                <div class="col-sm-10">
+                                <input type="number" class="form-control" id="length">
+                                </div>
+                                <small class="form-text text-muted">Please provide dimensions in HxWxL format.</small>
+                            </div>  
+                        </div>
+                        </div>
                     </form>  
             </div>  
         </main>
