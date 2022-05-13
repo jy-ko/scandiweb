@@ -4,30 +4,30 @@
  $product= new Product(); 
 
  if(isset($_POST['submit'])) {
-    // $validation = new Validator($_POST);
-    // $errors = $validation->validateForm();
+    $validation = new Validator($_POST);
+    $errors = $validation->validateForm();
      // set product property values
     $product->sku = $_POST['sku'];
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->type = $_POST['type'];
-    $product->insert($_POST);
+    // $product->insert($_POST);
     // var_dump($product);
+        // $product->insert($data,'form'); 
+        // if($product) { 
+        // echo 'insert successfully'; 
+        // header('location:index.php'); 
+        // } 
+        // else { echo 'try again' ; } 
+    if (!$errors) {
+        $product->insert($_POST);
         // $product->insert($data,'form'); 
         if($product) { 
         echo 'insert successfully'; 
         header('location:index.php'); 
         } 
-        // else { echo 'try again' ; } 
-    // if (!$errors) {
-    //     $product->insert($_POST);
-    //     // $product->insert($data,'form'); 
-    //     if($product) { 
-    //     echo 'insert successfully'; 
-    //     header('location:index.php'); 
-    //     } 
-    //     else { echo 'try again' ; }                  
-    // }
+        else { echo 'try again' ; }                  
+    }
  }  
 ?>
 <!DOCTYPE html>
