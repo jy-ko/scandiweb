@@ -1,0 +1,30 @@
+.container {
+    margin-top: 40px;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+}
+ d
+.product-form {
+    width: 50%;
+}
+
+.form-group {
+    margin: 16px 0;
+}
+
+#dvd{
+    display: none;
+ }
+#book{
+    display: none;
+ }
+#furniture{
+    display: none;
+ }
+
+
+
+ 
