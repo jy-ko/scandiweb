@@ -4,11 +4,7 @@
 .nav {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 24px;
-}
- d
-.product-form {
-    width: 50%;
+    padding-bottom: 12px;
 }
 
 .form-group {
@@ -25,6 +21,3 @@
     display: none;
  }
 
-
-
- 

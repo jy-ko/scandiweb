@@ -8,11 +8,6 @@ class Book extends Product implements Validator
     {
         parent::__construct();
         $this->inputs = $inputs;
-
-        // $this->sku = $inputs['sku'];
-        // $this->name = $inputs['name'];
-        // $this->price = $inputs['price'];
-        // $this->type = $inputs['type'];
         
     }
 
