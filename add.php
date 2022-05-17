@@ -11,14 +11,7 @@
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->type = $_POST['type'];
-    // $product->insert($_POST);
-    // var_dump($product);
-        // $product->insert($data,'form'); 
-        // if($product) { 
-        // echo 'insert successfully'; 
-        // header('location:index.php'); 
-        // } 
-        // else { echo 'try again' ; } 
+
     if (!$errors) {
         $product->insert($_POST);
         // $product->insert($data,'form'); 
@@ -40,6 +33,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
     <body>
@@ -56,42 +50,41 @@
                     </div>
                     <hr class="solid">
                     <!-- sku -->
-                    <div class="product-form">
+                    <div class="product-form" style="width: 50%";>
                         <div class="form-group row">
-                            <label for="sku" class="col-sm-2 col-form-label">SKU
-                            </label>
+                            <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="sku" name="sku">
-                            <div class="error">
-                                <?php echo $errors['sku'] ?? '' ?>
-                            </div>
+                                <input type="text" class="form-control" id="sku" name="sku">
+                                <div class="error">
+                                    <?php echo $errors['sku'] ?? '' ?>
+                                </div>
                             </div>
                         </div>
                         <!-- name -->
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
                         <!-- price -->
                         <div class="form-group row">
                             <label for="price" class="col-sm-2 col-form-label">Price($)</label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" id="price" name="price">
+                                <input type="number" class="form-control" id="price" name="price">
                             </div>
                         </div>
                         <!-- switcher -->
                         <div class="form-group row">
-                                <label for="productType" class="col-sm-2 col-form-label">Switcher</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="productType" name="type">
-                                        <option>select</option>
-                                        <option>dvd</option>
-                                        <option>book</option>
-                                        <option>furniture</option>
-                                    </select>
-                                </div>
+                            <label for="productType" class="col-sm-2 col-form-label">Switcher</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="productType" name="type">
+                                    <option>select</option>
+                                    <option>dvd</option>
+                                    <option>book</option>
+                                    <option>furniture</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group row" id="dvd">
@@ -124,12 +117,10 @@
                                 <small class="form-text text-muted">Please provide dimensions in HxWxL format.</small>
                             </div>  
                         </div>
-                        </div>
                     </form>  
             </div>  
         </main>
-        <script src="main.js" async defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="add.js" async defer></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </body>
 </html>

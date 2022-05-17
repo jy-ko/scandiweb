@@ -50,9 +50,9 @@
 		}
 
 		public function delete($id){
-
-			$query = "DELETE FROM products where id = '$id'";
-			if ($sql = $this->conn->query($query)) {
+			$sql = "DELETE FROM products WHERE id='$id'";
+			$res = mysqli_query($this->db_connect, $sql);
+			if($res){
 				return true;
 			}else{
 				return false;
