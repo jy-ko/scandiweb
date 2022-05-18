@@ -8,7 +8,6 @@ class Furniture extends Product implements Validator
     {
         parent::__construct();
         $this->inputs = $inputs;
-        // $this->type = $inputs['type'];
         
     }
 

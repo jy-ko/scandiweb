@@ -10,6 +10,7 @@ if(isset($_POST['submit'])){
 	$del_id = $checkbox[$i]; 
     $product -> delete($del_id);
     header('location:index.php'); 
+    echo ('items successfully deleted');
 }
 }
 
