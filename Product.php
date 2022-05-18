@@ -9,15 +9,14 @@
         public $name;
         public $price;
         public $type;
-        public $attributes;
+        public $size;
+        public $weight;
+		public $height;
+		public $width;
+		public $length;
 
     function __construct()  
     {  
-		// $this->sku = $inputs['sku'];
-        // $this->name = $inputs['name'];
-        // $this->price = $inputs['price'];
-        // $this->type = $inputs['type'];
-		// database connection
         $con=mysqli_connect($this->host, $this->username, $this->password,$this->db) or die(mysql_error("database"));  
         $this->db_connect=$con;
     } 
@@ -26,20 +25,21 @@
 			$name = $_POST['name'];
 			$price = $_POST['price'];
 			$type = $_POST['type'];
+			// $size = $_POST['size'];
+			// $weight = $_POST['weight'];
+			// $height = $_POST['height'];
+			// $width = $_POST['width'];
+			// $length = $_POST['length'];
 
-            // $query="INSERT INTO products(sku,name,price,type) VALUES('$sku','$name','$price','$type')";
-            // $sql = $query;
-            // if ($sql==true) {
-            //     header("Location:index.php?msg1=insert");
-            // }else{
-            //     echo "Save failed try again!";
-            // }
-			$sql = "INSERT INTO products(sku,name,price,type) VALUES ('$sku', '$name', '$price', '$type')";
+			$sql = "INSERT INTO products(sku,name,price,type) VALUES (
+				'$sku', '$name', '$price', '$type')";
+			// $sql = "INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
+			// 	'$sku', '$name', '$price', '$type', '$size', '$weight', '$height', '$width', '$length')";
 			$res = mysqli_query($this->db_connect, $sql);
 			if($res){
-				return true;
+				header('Location: index.php');    
 			}else{
-				return false;
+				echo 'fail';
 			}
 		}
 

@@ -1,26 +1,28 @@
 <?php 
- include_once ("product.php"); 
- require_once("validator.php");
+ include("Product.php"); 
+ require("Validator.php");
  $product= new Product(); 
 
  if(isset($_POST['submit'])) {
-    $validation = new Validator($_POST);
-    $errors = $validation->validateForm();
      // set product property values
     $product->sku = $_POST['sku'];
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->type = $_POST['type'];
-
+    // $product->size = $_POST['size'];
+    // $product->weight = $_POST['weight'];
+    // $product->height = $_POST['height'];
+    // $product->width = $_POST['width'];
+    // $product->length = $_POST['length'];
+    $validation = new Validator($product);
+    $errors = $validation->validateForm();
     if (!$errors) {
         $product->insert($_POST);
-        // $product->insert($data,'form'); 
-        if($product) { 
-        echo 'insert successfully'; 
-        header('location:index.php'); 
-        } 
-        else { echo 'try again' ; }                  
-    }
+        // if($product) { 
+        // header('Location: index.php');    
+        // } 
+        // else { echo 'try again' ; }                  
+    } 
  }  
 ?>
 <!DOCTYPE html>
@@ -54,24 +56,32 @@
                         <div class="form-group row">
                             <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="sku" name="sku">
-                                <div class="error">
-                                    <?php echo $errors['sku'] ?? '' ?>
-                                </div>
+                                <input type="text" minlength="1" class="form-control" id="sku" name="sku">
                             </div>
+                            
+
                         </div>
+                        <div class="error">
+                                <?php echo $errors['sku'] ?? '' ?>
+                            </div>
                         <!-- name -->
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" minlength="1" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="error">
+                                    <?php echo $errors['name'] ?? '' ?>
                             </div>
                         </div>
                         <!-- price -->
                         <div class="form-group row">
                             <label for="price" class="col-sm-2 col-form-label">Price($)</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="price" name="price">
+                                <input type="number" minlength="1"  class="form-control" id="price" name="price">
+                            </div>
+                            <div class="error">
+                                    <?php echo $errors['price'] ?? '' ?>
                             </div>
                         </div>
                         <!-- switcher -->
@@ -79,40 +89,43 @@
                             <label for="productType" class="col-sm-2 col-form-label">Switcher</label>
                             <div class="col-sm-10">
                                 <select class="form-control" id="productType" name="type">
-                                    <option>select</option>
+                                    <option value="" disabled selected>select</option>
                                     <option>dvd</option>
                                     <option>book</option>
                                     <option>furniture</option>
                                 </select>
+                            </div>
+                            <div class="error">
+                                    <?php echo $errors['type'] ?? '' ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="form-group row" id="dvd">
                                 <label for="DVD" class="col-sm-2 col-form-label">Size(MB)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="size">
+                                <input type="number" class="form-control" id="size" name="size">
                                 </div>
                                 <small class="form-text text-muted">Please provide size in MB</small>
                             </div>  
                             <div class="form-group row" id="book">
                                 <label for="Book" class="col-sm-2 col-form-label">Weight(KG)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="weight">
+                                <input type="number" class="form-control" id="weight" name="weight">
                                 </div>
                                 <small class="form-text text-muted">Please provide weight in KG</small>
                             </div>  
                             <div class="form-group row" id="furniture">
                                 <label for="furniture" class="col-sm-2 col-form-label">Height(CM)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="height">
+                                <input type="number" class="form-control" id="height" name="height">
                                 </div>
                                 <label for="furniture" class="col-sm-2 col-form-label">Width(CM)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="width">
+                                <input type="number" class="form-control" id="width" name="width">
                                 </div>
                                 <label for="furniture" class="col-sm-2 col-form-label">Length(CM)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="length">
+                                <input type="number" class="form-control" id="length" name="length">
                                 </div>
                                 <small class="form-text text-muted">Please provide dimensions in HxWxL format.</small>
                             </div>  
