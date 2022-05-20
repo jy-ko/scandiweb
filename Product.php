@@ -25,21 +25,19 @@
 			$name = $_POST['name'];
 			$price = $_POST['price'];
 			$type = $_POST['type'];
-			// $size = $_POST['size'];
-			// $weight = $_POST['weight'];
-			// $height = $_POST['height'];
-			// $width = $_POST['width'];
-			// $length = $_POST['length'];
-
-			$sql = "INSERT INTO products(sku,name,price,type) VALUES (
-				'$sku', '$name', '$price', '$type')";
-			// $sql = "INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
-			// 	'$sku', '$name', '$price', '$type', '$size', '$weight', '$height', '$width', '$length')";
+			$size = empty($_POST['size']) ? NULL : $_POST['size'];
+			$weight = empty($_POST['weight']) ? NULL : $_POST['weight'];
+			$height = empty($_POST['height']) ? NULL : $_POST['height'];
+			$width = empty($_POST['width']) ? NULL : $_POST['width'];
+			$length = empty($_POST['length']) ? NULL : $_POST['length'];
+			$sql = "INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
+				'$sku', '$name', '$price', '$type', '$size', '$weight', '$height', '$width', '$length')";
+			var_dump($sql);
 			$res = mysqli_query($this->db_connect, $sql);
 			if($res){
 				header('Location: index.php');    
 			}else{
-				echo 'fail';
+				return false;
 			}
 		}
 
