@@ -9,19 +9,17 @@
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->type = $_POST['type'];
-    // $product->size = $_POST['size'];
-    // $product->weight = $_POST['weight'];
-    // $product->height = $_POST['height'];
-    // $product->width = $_POST['width'];
-    // $product->length = $_POST['length'];
+    $product->size = empty($_POST['size']) ? NULL : $_POST['size'];
+    $product->weight = empty($_POST['weight']) ? NULL : $_POST['weight'];
+    $product->height = empty($_POST['height']) ? NULL : $_POST['height'];
+    $product->width = empty($_POST['width']) ? NULL : $_POST['width'];
+    $product->length = empty($_POST['length']) ? NULL : $_POST['length'];
+
+
     $validation = new Validator($product);
     $errors = $validation->validateForm();
     if (!$errors) {
-        $product->insert($_POST);
-        // if($product) { 
-        // header('Location: index.php');    
-        // } 
-        // else { echo 'try again' ; }                  
+        $product->insert($_POST);            
     } 
  }  
 ?>
@@ -106,6 +104,7 @@
                                 <input type="number" class="form-control" id="size" name="size">
                                 </div>
                                 <small class="form-text text-muted">Please provide size in MB</small>
+                                
                             </div>  
                             <div class="form-group row" id="book">
                                 <label for="Book" class="col-sm-2 col-form-label">Weight(KG)</label>
@@ -129,6 +128,11 @@
                                 </div>
                                 <small class="form-text text-muted">Please provide dimensions in HxWxL format.</small>
                             </div>  
+                        </div>
+                        <div class="error">
+                            <?php echo $errors['size'] ?? '' ?>
+                            <?php echo $errors['weight'] ?? '' ?>
+                            <?php echo $errors['height'] ?? '' ?>
                         </div>
                     </form>  
             </div>  
