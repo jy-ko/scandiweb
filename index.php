@@ -37,8 +37,8 @@ if(isset($_POST['submit'])){
                     <div class="nav">
                         <h1>Product List</h1>
                         <div class="nav-right">
-                            <a href="/add.php" class="btn-add btn btn-primary">Add</a>
-                            <input type="submit" name="submit" value="Mass Delete" name="delete" class="btn btn-danger"></input>
+                            <a href="/add.php" class="btn-add btn btn-primary" value="ADD">ADD</a>
+                            <input type="submit" name="submit" value="MASS DELETE" name="delete" class="btn btn-danger"></input>
                         </div>
                     </div>
                     <hr class="solid">
@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
                             foreach ($products as $product) {
                         ?>
                             <div class="card" style="margin:16px; padding:16px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-                            <input type="checkbox" name="checkedId[]" value="<?php echo $product['id']??''?>">
+                            <input type="checkbox" name="checkedId[]" class="delete-checkbox" value="<?php echo $product['id']??''?>">
                                 <div class="card-body" style="text-align:center;">
                                     <p><?php echo $product['sku']; ?></p>
                                     <p><?php echo $product['name']; ?></p>
