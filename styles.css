@@ -1,0 +1,38 @@
+.container {
+    margin-top: 40px;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+}
+
+.form-group {
+    margin: 16px 0;
+}
+.products-list {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+.card {
+    margin:16px; 
+    padding:16px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; 
+}
+.card-body {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+#dvd {
+    display: none;
+}
+#book {
+    display: none;
+}
+#furniture {
+    display: none;
+}

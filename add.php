@@ -32,7 +32,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
@@ -40,9 +40,9 @@
         <main>
             <div class="container">
 
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" id="product_form">
                     <div class="nav">
-                        <h1>Add Product</h1>
+                        <h1>Product Add</h1>
                         <div class="nav-right">
                             <input type="submit" name="submit" value="Save" class="btn-add btn btn-warning"></input>
                             <a href="/" class="btn-delete btn btn-secondary">Cancel</a>
@@ -50,7 +50,7 @@
                     </div>
                     <hr class="solid">
                     <!-- sku -->
-                    <div class="product-form" style="width: 50%";>
+                    <div style="width: 50%";>
                         <div class="form-group row">
                             <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                             <div class="col-sm-10">
@@ -88,9 +88,9 @@
                             <div class="col-sm-10">
                                 <select class="form-control" id="productType" name="type">
                                     <option value="" disabled selected>select</option>
-                                    <option>dvd</option>
-                                    <option>book</option>
-                                    <option>furniture</option>
+                                    <option value="dvd">DVD</option>
+                                    <option value="book">Book</option>
+                                    <option value="furniture">Furniture</option>
                                 </select>
                             </div>
                             <div class="error">
@@ -100,29 +100,26 @@
                         <div class="form-group row">
                             <div class="form-group row" id="dvd">
                                 <label for="DVD" class="col-sm-2 col-form-label">Size(MB)</label>
-                                <div class="col-sm-10">
-                                <input type="number" class="form-control" id="size" name="size">
-                                </div>
+                                <div class="col-sm-10"><input type="number" class="form-control" id="size" name="size"></div>
                                 <small class="form-text text-muted">Please provide size in MB</small>
-                                
                             </div>  
                             <div class="form-group row" id="book">
                                 <label for="Book" class="col-sm-2 col-form-label">Weight(KG)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="weight" name="weight">
+                                    <input type="number" class="form-control" id="weight" name="weight">
                                 </div>
                                 <small class="form-text text-muted">Please provide weight in KG</small>
                             </div>  
                             <div class="form-group row" id="furniture">
-                                <label for="furniture" class="col-sm-2 col-form-label">Height(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Height(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="height" name="height">
                                 </div>
-                                <label for="furniture" class="col-sm-2 col-form-label">Width(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Width(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="width" name="width">
                                 </div>
-                                <label for="furniture" class="col-sm-2 col-form-label">Length(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Length(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="length" name="length">
                                 </div>
@@ -135,7 +132,10 @@
                             <?php echo $errors['height'] ?? '' ?>
                         </div>
                     </form>  
+             
             </div>  
+            <hr class="solid">
+            <p>scandiweb test assignment</p>
         </main>
         <script src="add.js" async defer></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>

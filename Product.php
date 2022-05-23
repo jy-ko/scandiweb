@@ -32,7 +32,6 @@
 			$length = empty($_POST['length']) ? NULL : $_POST['length'];
 			$sql = "INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
 				'$sku', '$name', '$price', '$type', '$size', '$weight', '$height', '$width', '$length')";
-			var_dump($sql);
 			$res = mysqli_query($this->db_connect, $sql);
 			if($res){
 				header('Location: index.php');    

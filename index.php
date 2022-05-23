@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
@@ -43,13 +43,13 @@ if(isset($_POST['submit'])){
                     </div>
                     <hr class="solid">
                     <!-- render products here by id -->
-                    <div class="products-list" style="display:grid;grid-template-columns:repeat(4,1fr);">
+                    <div class="products-list">
                         <?php
                             foreach ($products as $product) {
                         ?>
-                            <div class="card" style="margin:16px; padding:16px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+                            <div class="card">
                             <input type="checkbox" name="checkedId[]" class="delete-checkbox" value="<?php echo $product['id']??''?>">
-                                <div class="card-body" style="text-align:center;">
+                                <div class="card-body" >
                                     <p><?php echo $product['sku']; ?></p>
                                     <p><?php echo $product['name']; ?></p>
                                     <p><?php echo $product['price']; ?></p>
@@ -58,6 +58,8 @@ if(isset($_POST['submit'])){
                         <?php } ?>
                     </div>  
                 </form>
+                <hr class="solid">
+                <p>scandiweb test assignment</p>
             </div>
         </main>
         <script src="index.js" async defer></script>
