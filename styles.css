@@ -6,7 +6,9 @@
     justify-content: space-between;
     padding-bottom: 12px;
 }
-
+form {
+    min-height: 630px;
+}
 .form-group {
     margin: 16px 0;
 }
