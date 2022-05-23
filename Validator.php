@@ -51,13 +51,13 @@ class Validator
             $this->addError('type', 'type cannot be empty');
         }
         switch ($val) {
-            case "dvd":
+            case "DVD":
                 $this->validateDvd($size);
                 break;
-            case "book":
+            case "Book":
                 $this->validateBook($weight);
                 break;
-            case "furniture":
+            case "Furniture":
                 $this->validateFurniture($height, $width, $length);
                 break;
             }

@@ -40,9 +40,9 @@
         <main>
             <div class="container">
 
-                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" id="product_form">
                     <div class="nav">
-                        <h1>Add Product</h1>
+                        <h1>Product Add</h1>
                         <div class="nav-right">
                             <input type="submit" name="submit" value="Save" class="btn-add btn btn-warning"></input>
                             <a href="/" class="btn-delete btn btn-secondary">Cancel</a>
@@ -50,7 +50,7 @@
                     </div>
                     <hr class="solid">
                     <!-- sku -->
-                    <div class="product-form" style="width: 50%";>
+                    <div style="width: 50%";>
                         <div class="form-group row">
                             <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                             <div class="col-sm-10">
@@ -88,9 +88,9 @@
                             <div class="col-sm-10">
                                 <select class="form-control" id="productType" name="type">
                                     <option value="" disabled selected>select</option>
-                                    <option>dvd</option>
-                                    <option>book</option>
-                                    <option>furniture</option>
+                                    <option value="dvd">DVD</option>
+                                    <option value="book">Book</option>
+                                    <option value="furniture">Furniture</option>
                                 </select>
                             </div>
                             <div class="error">
@@ -100,29 +100,26 @@
                         <div class="form-group row">
                             <div class="form-group row" id="dvd">
                                 <label for="DVD" class="col-sm-2 col-form-label">Size(MB)</label>
-                                <div class="col-sm-10">
-                                <input type="number" class="form-control" id="size" name="size">
-                                </div>
+                                <div class="col-sm-10"><input type="number" class="form-control" id="size" name="size"></div>
                                 <small class="form-text text-muted">Please provide size in MB</small>
-                                
                             </div>  
                             <div class="form-group row" id="book">
                                 <label for="Book" class="col-sm-2 col-form-label">Weight(KG)</label>
                                 <div class="col-sm-10">
-                                <input type="number" class="form-control" id="weight" name="weight">
+                                    <input type="number" class="form-control" id="weight" name="weight">
                                 </div>
                                 <small class="form-text text-muted">Please provide weight in KG</small>
                             </div>  
                             <div class="form-group row" id="furniture">
-                                <label for="furniture" class="col-sm-2 col-form-label">Height(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Height(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="height" name="height">
                                 </div>
-                                <label for="furniture" class="col-sm-2 col-form-label">Width(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Width(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="width" name="width">
                                 </div>
-                                <label for="furniture" class="col-sm-2 col-form-label">Length(CM)</label>
+                                <label for="Furniture" class="col-sm-2 col-form-label">Length(CM)</label>
                                 <div class="col-sm-10">
                                 <input type="number" class="form-control" id="length" name="length">
                                 </div>
