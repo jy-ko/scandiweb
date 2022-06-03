@@ -1,9 +1,9 @@
 <?php 
 	Class Product{
-		private $host = "localhost"; // your host name  
-        private $username = "root"; // your user name  
-        private $password = "root"; // your password  
-        private $db = "products"; // your database name 
+		private $servername = "localhost";
+        private $username   = "root";
+        private $password   = "root";
+        private $database   = "products";
 
 		public $sku;
         public $name;
@@ -17,8 +17,12 @@
 
     function __construct()  
     {  
-        $con=mysqli_connect($this->host, $this->username, $this->password,$this->db) or die(mysql_error("database"));  
-        $this->db_connect=$con;
+        $this->con = new mysqli($this->servername, $this->username,$this->password,$this->database);
+            if(mysqli_connect_error()) {
+             trigger_error("Failed to connect to MySQL: " . mysqli_connect_error());
+            }else{
+            return $this->con;
+            }
     } 
 		public function insert($post){
 			$sku = $_POST['sku'];
@@ -30,30 +34,36 @@
 			$height = empty($_POST['height']) ? NULL : $_POST['height'];
 			$width = empty($_POST['width']) ? NULL : $_POST['width'];
 			$length = empty($_POST['length']) ? NULL : $_POST['length'];
-			$sql = "INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
+			$query="INSERT INTO products(sku,name,price,type,size,weight,height,width,length) VALUES (
 				'$sku', '$name', '$price', '$type', '$size', '$weight', '$height', '$width', '$length')";
-			$res = mysqli_query($this->db_connect, $sql);
-			if($res){
-				header('Location: index.php');    
-			}else{
-				return false;
-			}
+            $sql = $this->con->query($query);
+            if ($sql==true) {
+                header("Location:index.php?msg1=insert");
+            }else{
+                echo "Registration failed try again!";
+            }
 		}
 
 		public function fetchAll(){
-			$data=mysqli_query($this->db_connect,"select * from products");
-        	$rows = mysqli_fetch_all($data,MYSQLI_ASSOC);
-        	return $rows;
-		}
+			$query = "SELECT * FROM products";
+            $result = $this->con->query($query);
+			if ($result->num_rows > 0) {
+				$data = array();
+				while ($row = $result->fetch_assoc()) {
+					$data[] = $row;
+				}
+				return $data;
+			}}
+
 
 		public function delete($id){
-			$sql = "DELETE FROM products WHERE id='$id'";
-			$res = mysqli_query($this->db_connect, $sql);
-			if($res){
-				return true;
-			}else{
-				return false;
-			}
+			$query = "DELETE FROM products WHERE id = '$id'";
+            $sql = $this->con->query($query);
+        if ($sql==true) {
+            header("Location:index.php?msg3=delete");
+        }else{
+            echo "Record does not delete try again";
+            }
 		}
 	}
 
